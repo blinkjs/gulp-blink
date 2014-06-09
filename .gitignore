@@ -1,3 +1,6 @@
+*.js
+!lib/blink.js
+
 # Logs
 logs
 *.log
