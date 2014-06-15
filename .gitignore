@@ -1,6 +1,7 @@
 *.js
 !gulpfile.js
 !lib/blink.js
+tmp/
 
 # Logs
 logs
