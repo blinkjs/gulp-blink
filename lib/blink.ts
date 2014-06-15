@@ -10,6 +10,7 @@ import blink = require('blink');
 var PLUGIN_NAME = 'gulp-blink';
 
 // Plugin level function(dealing with files)
+// ReSharper disable once UnusedLocals
 function gulpBlink(options) {
 
 	options = options || {};
