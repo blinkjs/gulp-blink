@@ -14,6 +14,5 @@
   },
   "_source": "git://github.com/dt-bower/dt-node.git",
   "_target": "*",
-  "_originalSource": "dt-node",
-  "_direct": true
+  "_originalSource": "dt-node"
 }
