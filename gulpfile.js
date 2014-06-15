@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 
+var blink = require('./lib/blink');
 var clean = require('gulp-clean');
 var tsc = require('gulp-tsc');
 var mocha = require('gulp-mocha');
@@ -8,8 +9,8 @@ var runSequence = require('run-sequence');
 
 var paths = {
   lib: {
-    ts: ['lib/**/*.ts'],
-    js: ['tmp/lib/**/*.js']
+    ts: ['lib/blink.ts'],
+    js: ['lib/blink.js']
   },
   test: {
     fixtures: {
@@ -52,7 +53,7 @@ gulp.task('clean', function() {
 gulp.task('ts:lib', function() {
   return gulp.src(paths.lib.ts)
     .pipe(tsc({ target: 'es5' }))
-    .pipe(gulp.dest('tmp/lib'));
+    .pipe(gulp.dest('lib'));
 });
 
 gulp.task('ts:fixtures', function() {
@@ -70,14 +71,12 @@ gulp.task('ts:specs', function() {
 gulp.task('blink', ['blink:buffer', 'blink:stream']);
 
 gulp.task('blink:buffer', function() {
-  var blink = require('./tmp/lib/blink.js');
   return gulp.src(paths.test.fixtures.js)
     .pipe(blink())
     .pipe(gulp.dest('tmp/test/actual/buffer'));
 });
 
 gulp.task('blink:stream', function() {
-  var blink = require('./tmp/lib/blink.js');
   return gulp.src(paths.test.fixtures.js, { buffer: false })
     .pipe(blink())
     .pipe(gulp.dest('tmp/test/actual/stream'));
@@ -90,3 +89,20 @@ gulp.task('mocha', function() {
       clearRequireCache: true
     }));
 });
+
+// TODO: Remove when gulp is fixed per https://github.com/gulpjs/gulp/pull/89
+function fixExitStatus(gulp) {
+  var exitStatus = 0;
+
+  gulp.on('err', function() {
+    exitStatus = 1;
+  });
+
+  process.on('exit', function(status) {
+    if (status < exitStatus) {
+      process.exit(exitStatus);
+    }
+  });
+}
+
+fixExitStatus(gulp);
