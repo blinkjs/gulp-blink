@@ -1,6 +1,6 @@
 {
   "name": "gulp-blink",
-  "version": "0.0.0",
+  "version": "0.1-alpha",
   "description": "Gulp plugin for Blink.",
   "main": "./lib/blink.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jedmao/gulp-blink.git"
+    "url": "https://github.com/blinkjs/gulp-blink.git"
   },
   "keywords": [
     "gulpplugin",
@@ -18,23 +18,24 @@
   "author": "Jed Mao <jed.hunsaker+npm@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jedmao/gulp-blink/issues"
+    "url": "https://github.com/blinkjs/gulp-blink/issues"
   },
-  "homepage": "https://github.com/jedmao/gulp-blink",
+  "homepage": "https://github.com/blinkjs/gulp-blink",
   "dependencies": {
-    "through2": "^0.5.1",
+    "blink": "^1.0.0",
     "gulp-util": "^2.2.16",
     "q": "^1.0.1",
-    "blink": "^0.3.2"
+    "through2": "^0.5.1"
   },
   "devDependencies": {
-    "sinon-chai": "^2.5.0",
-    "sinon": "^1.10.2",
     "chai": "^1.9.1",
-    "mocha": "^1.20.1",
-    "gulp": "^3.7.0",
-    "gulp-tsc": "^0.9.0",
+    "gulp": "^3.8.0",
     "gulp-clean": "^0.3.0",
-    "gulp-mocha": "^0.4.1"
+    "gulp-mocha": "^0.4.1",
+    "gulp-tsc": "^0.9.0",
+    "mocha": "^1.20.1",
+    "run-sequence": "^0.3.6",
+    "sinon": "^1.10.2",
+    "sinon-chai": "^2.5.0"
   }
 }
